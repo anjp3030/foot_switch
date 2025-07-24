@@ -1,0 +1,1 @@
+SUBSYSTEM=="input", SUBSYSTEMS=="input", ATTRS{id/product}=="0204", ATTRS{id/vendor}=="10f7", GROUP="footswitch", MODE="666"
