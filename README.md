@@ -4,24 +4,28 @@
 
 ## 주요 기능
 
-- Linux의 `input_event`를 사용하여 USB 풋스위치의 키 이벤트를 읽습니다.
-- 풋스위치의 ON/OFF 상태를 `std_msgs/Bool` 메시지로 발행합니다.
+- Linux의 `input_event`를 사용하여 USB 풋스위치의 키 이벤트를 읽기
+- 풋스위치의 ON/OFF 상태를 `std_msgs/Bool` 메시지로 발행
 - 토픽 이름: `footswitch1`
 - 기본 장치 경로:  
   `/dev/input/by-id/usb-DIY_Devices_16F1455_Generic_HID__Keyboard_and_Mouse-if01-event-kbd`
+- if (ev.type == EV_KEY && ev.code == 60) // 풋스위치 키 코드 확인 ev.code는 설정한 키에 따라 달라짐 ex) f2 -> 60, f1 -> 59
 
-## 요구 사항
+## udev rule 적용
 
-- `/dev/input`을 지원하는 Linux 환경
-- ROS 2 (Humble, Foxy 등에서 테스트됨)
-- 입력 장치(`/dev/input/...`)에 대한 읽기 권한
+```bash
+sudo cp 19-footswitch.rules /etc/udev/rules.d
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
 
-## 빌드 방법
+## 빌드 및 실행
 
 ROS 2 워크스페이스에 이 저장소를 클론한 후 다음 명령어를 실행하세요:
 
 ```bash
-cd ~/ros2_ws
-colcon build --packages-select <your_package_name>
+cd ~/<your workspace>
+colcon build --packages-select foot_switch
 source install/setup.bash
+ros2 run foot_switch foot_switch
 ```
