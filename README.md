@@ -9,7 +9,7 @@
 - 토픽 이름: `footswitch1`
 - 기본 장치 경로:  
   `/dev/input/by-id/usb-DIY_Devices_16F1455_Generic_HID__Keyboard_and_Mouse-if01-event-kbd`
-- if (ev.type == EV_KEY && ev.code == 60) // 풋스위치 키 코드 확인 ev.code는 설정한 키에 따라 달라짐 ex) f2 -> 60, f1 -> 59
+- if (ev.type == EV_KEY && ev.code == 60) // 풋스위치 키 코드 확인 ev.code는 설정한 키에 따라 달라짐 ex) F2 -> 60, F1 -> 59
 
 ## udev rule 적용
 
